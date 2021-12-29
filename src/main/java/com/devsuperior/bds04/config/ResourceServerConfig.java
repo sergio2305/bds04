@@ -28,6 +28,8 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 	
 	private static final String[] PUBLIC_POST = { "/events/**" };
 	
+	
+	
 	@Override
 	public void configure(ResourceServerSecurityConfigurer resources) throws Exception {
 		resources.tokenStore(tokenStore);
@@ -45,7 +47,10 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
 		.antMatchers(PUBLIC).permitAll()
 		.antMatchers(HttpMethod.GET, PUBLIC_GET).permitAll()
 		.antMatchers(HttpMethod.POST, PUBLIC_POST).hasAnyRole("CLIENT", "ADMIN")
-		.anyRequest().hasAnyRole("ADMIN");
+		.anyRequest().hasRole("ADMIN");
+		
+		
+		
 	}	
 }
 
